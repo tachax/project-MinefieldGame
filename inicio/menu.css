@@ -12,6 +12,11 @@ body {
   font-style: normal;
 }
 
+h2 {
+  color: #ffffff;
+  font-size: 30px;
+}
+
 .card {
   background-color: #00453a;
   margin: 77px 130px 77px 130px;
@@ -22,11 +27,6 @@ body {
   padding: 100px;
 }
 
-.texto {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 button {
   display: flex;
   align-items: center;

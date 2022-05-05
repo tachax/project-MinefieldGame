@@ -1,0 +1,13 @@
+body {
+  text-align: center;
+  background-color: #008374;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+}
+
+.card {
+  background-color: #00453a;
+  margin: 77px 130px 77px 130px;
+  border-radius: 20px;
+  padding: 100px;
+}
