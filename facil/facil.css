@@ -3,6 +3,14 @@ body {
   text-align: center;
 }
 
-.table {
-  text-align: center;
+table {
+  background-color: black;
+  border: solid 1px black;
+}
+
+td {
+  border: solid 1px black;
+  background-color: aliceblue;
+  width: 50px;
+  height: 40px;
 }
