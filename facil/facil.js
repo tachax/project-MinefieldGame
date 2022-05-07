@@ -4,6 +4,7 @@ var colunas;
 var bombas;
 let i;
 let j;
+var PRIMEIROCLIQUE = true;
 bombas = 10;
 linhas = 8;
 colunas = 10;
@@ -45,10 +46,15 @@ function trocarNiveis() {
   }
 }
 
-//trocar tabuleiro
+//trocar matriz(add bombas nela) e mudar cor do botão
 function trocarMatriz(ident) {
   document.getElementById(ident).style.background = "red"
-  gerarBombas()
+
+  //só gerar bombas no primeiro clique
+  if (PRIMEIROCLIQUE) {
+    gerarBombas()
+    PRIMEIROCLIQUE = false;
+  }
 }
 
 //gerar bombas
