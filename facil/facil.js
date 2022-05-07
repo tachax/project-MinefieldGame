@@ -21,4 +21,6 @@ function montarTabuleiro() {
 
   //sumir botão
   document.getElementById('btMontar').style.display = 'none';
+  document.getElementById('preparado').style.display = 'none';
+  document.getElementById('jogo').style.display = 'flex';
 }
