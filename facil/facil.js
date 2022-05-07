@@ -47,8 +47,17 @@ function trocarNiveis() {
 
 //trocar tabuleiro
 function trocarTabuleiro() {
-  document.getElementById(`${i}${j}`).style.backgroundColor = 'red'
+  //NÃO CONSEGUIMOS PEGAR O ID DO BOTÃO CLICADO
+  console.log(i)
+  console.log(j)
+  i = 0
+  console.log(i)
+  j = 0
+  console.log(j)
+  let ident = i+j
+  console.log(ident)
   gerarBombas()
+  document.getElementById(ident).style.backgroundColor = 'red'
 }
 
 //gerar bombas
@@ -66,6 +75,7 @@ function gerarBombas() {
     tabuleiro[linha][coluna] = -1;
   }
   
+  console.log(tabuleiro[0][0])
   console.log(tabuleiro)
 }
 
