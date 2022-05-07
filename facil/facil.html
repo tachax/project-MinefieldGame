@@ -18,12 +18,17 @@
     
     <div id="jogo">
       <div id="opcoesJogo">
-        <p>select || bombinhas || tempo</p>
+        <select onchange="trocarNiveis()" name="" id="niveis">
+          <option value="facil">FÁCIL</option>
+          <option value="intermed">INTERMEDIÁRIO</option>
+          <option value="dificil">DIFÍCIL</option>
+        </select>
+        || 🚩10 || 00:00
       </div>
+
       <div id="tabuleiro">
         <table align="center" id='tabela'></table>
       </div>
-      
     </div>
   
   </body>

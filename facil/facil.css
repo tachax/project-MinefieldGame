@@ -44,6 +44,11 @@ body {
   gap: 30px;
 }
 
+#tabuleiro button{
+  background: black;
+  padding: 21px 24px 21px 24px;
+}
+
 #opcoesJogo {
   background-color: #00453a;
   border-radius: 20px;
@@ -53,14 +58,19 @@ body {
   gap: 6px;
 }
 
+#opcoesJogo select{
+  border-radius: 6px;
+}
+
+
 table {
-  background-color: black;
+  background-color: aliceblue;
   border: solid 1px black;
 }
 
 td {
   border: solid 1px black;
-  background-color: aliceblue;
+  background-color: black;
   width: 50px;
   height: 40px;
 }
