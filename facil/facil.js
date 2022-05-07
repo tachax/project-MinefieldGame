@@ -20,7 +20,7 @@ function montarTabuleiro() {
     for (j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
-      document.getElementById(i).innerHTML += `<td><button onclick="trocarTabuleiro()" id="${i}${j}"></button></td>`;
+      document.getElementById(i).innerHTML += `<td><button onclick="trocarMatriz('${String(i)}${String(j)}')" id="${String(i)}${String(j)}"></button></td>`;
     }
   }
 
@@ -46,18 +46,9 @@ function trocarNiveis() {
 }
 
 //trocar tabuleiro
-function trocarTabuleiro() {
-  //NÃO CONSEGUIMOS PEGAR O ID DO BOTÃO CLICADO
-  console.log(i)
-  console.log(j)
-  i = 0
-  console.log(i)
-  j = 0
-  console.log(j)
-  let ident = i+j
-  console.log(ident)
+function trocarMatriz(ident) {
+  document.getElementById(ident).style.background = "red"
   gerarBombas()
-  document.getElementById(ident).style.backgroundColor = 'red'
 }
 
 //gerar bombas
