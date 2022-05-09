@@ -4,11 +4,10 @@ var colunas;
 var bombas;
 let i;
 let j;
-var PRIMEIROCLIQUE = true;
 bombas = 10;
 linhas = 8;
 colunas = 10;
-const TERM = false;
+var PRIMEIROCLIQUE = true;
 
 //inserindo a tabela
 function montarTabuleiro() {
@@ -49,52 +48,96 @@ function trocarNiveis() {
 //trocar matriz(add bombas nela) e mudar cor do botão
 function trocarMatriz(ident) {
   document.getElementById(ident).style.background = "red"
+  console.log(ident)
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
     gerarBombas()
+    proxBomba(ident)
     PRIMEIROCLIQUE = false;
   }
+
 }
 
 //gerar bombas
 function gerarBombas() {
-  
+
   for (var i = 0; i < bombas; i++) {
-    var linha = Math.floor((Math.random() * linhas));
-    var coluna = Math.floor((Math.random() * colunas));
-    
-    while (tabuleiro[linha][coluna] === -1) {
-      var linha = Math.floor((Math.random() * linhas));
-      var coluna = Math.floor((Math.random() * colunas));      
+    var numLinha = Math.floor((Math.random() * linhas));
+    var numColuna = Math.floor((Math.random() * colunas));
+
+    while (tabuleiro[numLinha][numColuna] === -1) {
+      numLinha = Math.floor((Math.random() * linhas));
+      numColuna = Math.floor((Math.random() * colunas));
     }
-    
-    tabuleiro[linha][coluna] = -1;
+
+    tabuleiro[numLinha][numColuna] = -1;
   }
-  
-  console.log(tabuleiro[0][0])
   console.log(tabuleiro)
 }
 
-/*
-//sorteando as casas da armadilha
-    for (i = 0; i < 10; i++) {
-        armadilha = Math.floor(Math.random() * 30);
+//gerar números próx bomba
+function proxBomba(ident) {
+  var qntBombas;
 
-        //verifica se a armadilha sorteada já é uma armadilha
-        while (tabuleiro[armadilha] == -1) {
-            armadilha = Math.floor(Math.random() * 30);
-        }
+  i = Number(ident[0]) //2
+  console.log(i)
+  j = Number(ident[1]) //3
+  console.log(j)
+  for (let l = i - 1; l < i + 2; l++) {
+    console.log(tabuleiro)
+    console.log('l '+l)
+    for (let c = j - 1; c < j + 2; c++) {
+      console.log(tabuleiro)
+      console.log('c '+c)
+      qntBombas = 0;
 
-        tabuleiro[armadilha] = -1;
+      if (tabuleiro[l][c] === tabuleiro[i][j]) {
+        
+      } else if (tabuleiro[l][c] === -1) {
+        qntBombas++;
+      }
+
+      console.log(qntBombas)
+      tabuleiro[i][j] = qntBombas;
+      console.log('tabu ' + tabuleiro[i][j])
+      console.log(tabuleiro)
+
     }
 
-    //preenchendo as casas restantes do tabuleiro
-    for (let i = 0; i < 30; i++) {
-        if (tabuleiro[i] != -1) {
-            tabuleiro[i] = 0;
-        }
-        document.getElementById("linha").innerHTML += `<td rowspan="2" id="${id}">${tabuleiro[i]}</td>`;
-        id++;
-    }
-*/
+  }
+  console.log(tabuleiro)
+
+  // for (i = 0; i < linhas; i++) {
+  //   console.log('i '+i)
+  //   for (j = 2; j < colunas; j++) {
+  //     console.log('j '+j)
+
+  //     if (tabuleiro[i][j + 1] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i][j - 1] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i - 1][j] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i - 1][j + 1] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i - 1][j - 1] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i + 1][j] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i + 1][j + 1] == -1) {
+  //       qntBombas++;
+  //     } else if (tabuleiro[i + 1][j - 1] == -1) {
+  //       qntBombas++;
+  //     }
+
+  //     tabuleiro[i][j] = qntBombas;
+  //     qntBombas = 0;
+  //     console.log('tabu '+tabuleiro[i][j])
+
+  //   }
+
+  // }
+  // console.log(tabuleiro)
+}
+

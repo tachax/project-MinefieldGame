@@ -46,6 +46,7 @@ body {
 
 #tabuleiro button{
   background-color: black;
+  color: white;
   padding: 21px 24px 21px 24px;
 }
 
