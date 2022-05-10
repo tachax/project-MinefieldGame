@@ -53,10 +53,10 @@ function trocarMatriz(ident) {
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
     gerarBombas()
-    proxBomba(ident)
     PRIMEIROCLIQUE = false;
   }
-
+  
+  proxBomba()
 }
 
 //gerar bombas
@@ -76,68 +76,111 @@ function gerarBombas() {
   console.log(tabuleiro)
 }
 
+var qntBombas = 0;
+
+
 //gerar números próx bomba
-function proxBomba(ident) {
-  var qntBombas;
+function proxBomba() {
 
-  i = Number(ident[0]) //2
-  console.log(i)
-  j = Number(ident[1]) //3
-  console.log(j)
-  for (let l = i - 1; l < i + 2; l++) {
-    console.log(tabuleiro)
-    console.log('l '+l)
-    for (let c = j - 1; c < j + 2; c++) {
-      console.log(tabuleiro)
-      console.log('c '+c)
-      qntBombas = 0;
+  var indice0;
+  var indice1;
+  
+  indice0 = 1
+  indice1 = 1
+  console.log(indice0)
+  console.log(indice1)
+  
+  var isBomba = (tabuleiro[indice0][indice1] == -1)
 
-      if (tabuleiro[l][c] === tabuleiro[i][j]) {
-        
-      } else if (tabuleiro[l][c] === -1) {
+  while (indice1 < 10) {
+
+    qntBombas = 0;
+
+    if(isBomba) {
+
+    } else {
+
+      if (tabuleiro[indice0-1][indice1-1] == 0) {
+          
+      } else if (tabuleiro[indice0-1][indice1-1] == (-1*1)) {
         qntBombas++;
+        console.log('qnt bombas1 '+ qntBombas)
       }
-
-      console.log(qntBombas)
-      tabuleiro[i][j] = qntBombas;
-      console.log('tabu ' + tabuleiro[i][j])
-      console.log(tabuleiro)
-
+      if (tabuleiro[indice0-1][indice1] === 0) {
+        
+      } else if(tabuleiro[indice0-1][indice1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas2 '+ qntBombas)
+      }
+      if (tabuleiro[indice0-1][indice1+1] === 0) {
+        
+      } else if(tabuleiro[indice0-1][indice1+1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas3 '+ qntBombas)
+      }
+      if (tabuleiro[indice0][indice1-1] === 0) {
+        
+      } else if (tabuleiro[indice0][indice1-1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas4 '+ qntBombas)
+      }
+      if (tabuleiro[indice0][indice1+1] === 0) {
+        
+      } else if(tabuleiro[indice0][indice1+1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas5 '+ qntBombas)
+      }
+      if (tabuleiro[indice0+1][indice1-1] === 0) {
+        
+      } else if(tabuleiro[indice0+1][indice1-1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas6 '+ qntBombas)
+      }
+      if (tabuleiro[indice0+1][indice1] === 0) {
+        
+      } else if(tabuleiro[indice0+1][indice1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas7 '+ qntBombas)
+      }
+      if (tabuleiro[indice0+1][indice1+1] === 0) {
+        
+      } else if(tabuleiro[indice0+1][indice1+1] === (-1*1)) {
+        qntBombas++;
+        console.log('qnt bombas8 '+ qntBombas)
+      }
+      
+      console.log(`indice1 ${indice1}`)
+      tabuleiro[indice0][indice1] = qntBombas;
+      qntBombas = 0
+      console.log('qnt bombas total '+tabuleiro[indice0][indice1])
+      indice1++;
     }
 
-  }
-  console.log(tabuleiro)
-
-  // for (i = 0; i < linhas; i++) {
-  //   console.log('i '+i)
-  //   for (j = 2; j < colunas; j++) {
-  //     console.log('j '+j)
-
-  //     if (tabuleiro[i][j + 1] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i][j - 1] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i - 1][j] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i - 1][j + 1] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i - 1][j - 1] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i + 1][j] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i + 1][j + 1] == -1) {
-  //       qntBombas++;
-  //     } else if (tabuleiro[i + 1][j - 1] == -1) {
-  //       qntBombas++;
-  //     }
-
-  //     tabuleiro[i][j] = qntBombas;
-  //     qntBombas = 0;
-  //     console.log('tabu '+tabuleiro[i][j])
-
-  //   }
-
-  // }
-  // console.log(tabuleiro)
+    console.log(tabuleiro)
 }
+     
+  
 
+}
+    
+
+    //   for (let l = indice0 - 1; l < indice0 + 2; l++) {
+    //     for (let c = indice1 - 1; c < indice1 + 2; c++) {
+    //       if(l >= 0 && l < linhas && c>= 0 && c < colunas)
+    //         console.log()
+         
+    //      if (tabuleiro[c][l] == -1) {
+    //        qntBombas++;
+    //       }
+          
+    //     }
+    //   }
+    
+    // console.log(l < indice1 + 2)
+    // l++
+    
+    
+    // tabuleiro[indice0][indice1] = qntBombas;
+    // console.log(tabuleiro[indice0][indice1])
+    // console.log(`qnt bombas ${qntBombas}`)
+    // console.log(tabuleiro)
