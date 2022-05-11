@@ -1,13 +1,77 @@
 body {
+  background-color: #00856f;
   text-align: center;
-  background-color: #008374;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
 }
 
-.card {
+#preparado {
   background-color: #00453a;
-  margin: 77px 130px 77px 130px;
   border-radius: 20px;
-  padding: 100px;
+  margin: 40%;
+  margin-top: 10%;
+  padding: 10px;
+  gap: 6px;
+}
+
+#preparado h4 {
+  font-size: 24px;
+}
+
+
+#preparado button {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  padding: 5px 16px;
+  border-radius: 40px;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 23px;
+  text-transform: uppercase;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+#jogo {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+#tabuleiro button{
+  background-color: black;
+  color: black;
+  padding: 21px 24px 21px 24px;
+}
+
+#opcoesJogo {
+  background-color: #00453a;
+  border-radius: 20px;
+  margin: auto;
+  width: 27%;
+  padding: 10px;
+  gap: 6px;
+}
+
+#opcoesJogo select{
+  border-radius: 6px;
+  padding: 1px;
+}
+
+
+table {
+  background-color: aliceblue;
+  border: solid 1px black;
+}
+
+td {
+  border: solid 1px black;
+  background-color: black;
+  width: 50px;
+  height: 40px;
 }

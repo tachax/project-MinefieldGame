@@ -17,7 +17,7 @@ function montarTabuleiro() {
     for (j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
-      document.getElementById(i).innerHTML += `<td><button onclick="trocarMatriz('${String(i)}${String(j)}')" id="${String(i)}${String(j)}"></button></td>`;
+      document.getElementById(i).innerHTML += `<td><button onclick="jogada('${String(i)}${String(j)}')" id="${String(i)}${String(j)}"></button></td>`;
     }
   }
 
@@ -43,7 +43,7 @@ function trocarNiveis() {
 }
 
 //trocar matriz(add bombas nela) e mudar cor do botão
-function trocarMatriz(ident) {
+function jogada(ident) {
   document.getElementById(ident).style.background = "white"
   console.log(ident)
 
@@ -53,6 +53,8 @@ function trocarMatriz(ident) {
     mapearBombas()
     PRIMEIROCLIQUE = false;
   }
+
+  ehNumero(ident)
 
 }
 
@@ -139,4 +141,15 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
     }
   }
   tabuleiro[indice0][indice1] = qntBombas;
+}
+
+function ehNumero(ident) {
+  if (tabuleiro[ident[0]][ident[1]] != -1 || tabuleiro[ident[0]][ident[1]] != 0) {
+    document.getElementById(ident).innerText = tabuleiro[ident[0]][ident[1]];
+  }
+
+  if (tabuleiro[ident[0]][ident[1]] == -1) {
+    location.href = '../loser/loser.html'
+  }
+
 }

@@ -9,5 +9,27 @@
     <title>Nível Intermediário</title>
   </head>
 
-  <body></body>
+  <body>
+
+    <div id="preparado">
+      <h4>Preparado?</h4>
+      <button id="btMontar" onclick="montarTabuleiro()">Sim</button>
+    </div>
+    
+    <div id="jogo">
+      <div id="opcoesJogo">
+        <select onchange="trocarNiveis()" name="" id="niveis">
+          <option value="intermed">INTERMEDIÁRIO</option>
+          <option value="facil">FÁCIL</option>
+          <option value="dificil">DIFÍCIL</option>
+        </select>
+        || 🙂 || 🚩10 || 00:00
+      </div>
+
+      <div id="tabuleiro">
+        <table align="center" id='tabela'></table>
+      </div>
+    </div>
+
+  </body>
 </html>

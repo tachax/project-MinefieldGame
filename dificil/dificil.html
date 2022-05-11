@@ -5,10 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script src="dificil.js"></script>
+    <link rel="stylesheet" href="dificil.css" />
+    <title>Nível Difícil</title>
   </head>
   <body>
-    sss
+  
+    <div id="preparado">
+      <h4>Preparado?</h4>
+      <button id="btMontar" onclick="montarTabuleiro()">Sim</button>
+    </div>
+    
+    <div id="jogo">
+      <div id="opcoesJogo">
+        <select onchange="trocarNiveis()" name="" id="niveis">
+          <option value="dificil">DIFÍCIL</option>
+          <option value="facil">FÁCIL</option>
+          <option value="intermed">INTERMEDIÁRIO</option>
+        </select>
+        || 🙂 || 🚩10 || 00:00
+      </div>
+
+      <div id="tabuleiro">
+        <table align="center" id='tabela'></table>
+      </div>
+    </div>
+
   </body>
 </html>
