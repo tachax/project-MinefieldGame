@@ -1,12 +1,9 @@
 var tabuleiro = [];
-var linhas;
-var colunas;
-var bombas;
+const linhas = 8;
+const colunas = 10;
+const bombas = 10;
 let i;
 let j;
-bombas = 10;
-linhas = 8;
-colunas = 10;
 var PRIMEIROCLIQUE = true;
 
 //inserindo a tabela
@@ -37,7 +34,7 @@ function trocarNiveis() {
   niveis = document.getElementById('niveis').value
 
   if (niveis == 'facil') {
-    location.href = '../facil/facill.html'
+    location.href = '../facil/facil.html'
   } else if (niveis == 'intermed') {
     location.href = '../intermediario/intermediario.html'
   } else if (niveis == 'dificil') {
@@ -52,126 +49,94 @@ function trocarMatriz(ident) {
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
-    gerarBombas()
+    gerarBombas(ident)
     mapearBombas()
     PRIMEIROCLIQUE = false;
   }
-  
+
 }
 
 //gerar bombas
-function gerarBombas() {
+function gerarBombas(ident) {
 
   for (var i = 0; i < bombas; i++) {
     var numLinha = Math.floor((Math.random() * linhas));
     var numColuna = Math.floor((Math.random() * colunas));
 
-    while (tabuleiro[numLinha][numColuna] === -1) {
+    //confere se já é uma bomba ou o número clicado
+    while (tabuleiro[numLinha][numColuna] === -1 && (numLinha == ident[0] || numColuna == ident[1])) {
       numLinha = Math.floor((Math.random() * linhas));
       numColuna = Math.floor((Math.random() * colunas));
     }
 
     tabuleiro[numLinha][numColuna] = -1;
   }
+  console.log(ident[0])
+  console.log(ident[1])
   console.log(tabuleiro)
 }
 
-var qntBombas = 0;
-
-
 //gerar números próx bomba
 function mapearBombas() {
+  var qntBombas = 0;
   var indice0;
   var indice1;
-  
+
   indice0 = 0
-  while(indice0<linhas) {
+  while (indice0 < linhas) {
 
     //vai em cada coluna
     indice1 = 0
     while (indice1 < colunas) {
-
       qntBombas = 0;
 
       //ve se já é uma bomba, para não alterar seu valor
-      if(tabuleiro[indice0][indice1] == -1) {
+      if (tabuleiro[indice0][indice1] == -1) {
         indice1++;
 
       } else {
         //vai girando ao redor de cada 'quadrado'
-        
-        //vê se é a primeira linha pra não dar erro
-        if (indice0 == 0) {
-          if (tabuleiro[indice0][indice1 - 1] === -1) {
-            qntBombas++;
-          }
-          if (tabuleiro[indice0][indice1 + 1] === -1) {
-            qntBombas++;
-          }
-          if (tabuleiro[indice0 + 1][indice1 - 1] === -1) {
-            qntBombas++;
-          }
-          if (tabuleiro[indice0 + 1][indice1] === -1) {
-            qntBombas++;
-          }
-          if (tabuleiro[indice0 + 1][indice1 + 1] === -1) {
-            qntBombas++;
-          }
-
-        //vê se é a última linha pra não dar erro
-        } else if (indice0 == 7) {
-            if (tabuleiro[indice0 - 1][indice1 - 1] == -1) {
-              qntBombas++;
-            }
-            if (tabuleiro[indice0 - 1][indice1] === -1) {
-              qntBombas++;
-            }
-            if (tabuleiro[indice0 - 1][indice1 + 1] === -1) {
-              qntBombas++;
-            }
-            if (tabuleiro[indice0][indice1 - 1] === -1) {
-              qntBombas++;
-            }
-            if (tabuleiro[indice0][indice1 + 1] === -1) {
-                qntBombas++;
-            }
-        } else {
-            if (tabuleiro[indice0 - 1][indice1 - 1] == -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0 - 1][indice1] === -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0 - 1][indice1 + 1] === -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0][indice1 - 1] === -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0][indice1 + 1] === -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0 + 1][indice1 - 1] === -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0 + 1][indice1] === -1) {
-                qntBombas++;
-            }
-            if (tabuleiro[indice0 + 1][indice1 + 1] === -1) {
-                qntBombas++;
-            }
+        verificarAoRedor(indice0, indice1, qntBombas)
+  
+        indice1++;
       }
-      
-      tabuleiro[indice0][indice1] = qntBombas;
-      qntBombas = 0
-      indice1++;
+
+    }
+    indice0++;
+  }
+}
+
+//verifica as bombas ao redor
+function verificarAoRedor(indice0, indice1, qntBombas) {
+  //vê se é a primeira linha pra não dar erro
+  if (indice0 == 0) {
+    for (let i = indice0; i < indice0 + 2; i++) {
+      for (let j = indice1 - 1; j < indice1 + 2; j++) {
+        if (tabuleiro[i][j] === -1) {
+          qntBombas++
+        }
+      }
     }
 
-  }
-  indice0++;
-  }
-  console.log(tabuleiro)
-     
-  
+    //vê se é a última linha pra não dar erro
+  } else if (indice0 == 7) {
+    for (let i = indice0 - 1; i < indice0 + 1; i++) {
+      for (let j = indice1 - 1; j < indice1 + 2; j++) {
+        if (tabuleiro[i][j] === -1) {
+          qntBombas++
+        }
+      }
+    }
 
+    //linhas de 1 a 6
+  } else {
+    for (let i = indice0 - 1; i < indice0 + 2; i++) {
+      for (let j = indice1 - 1; j < indice1 + 2; j++) {
+        if (tabuleiro[i][j] === -1) {
+          qntBombas++
+        }
+      }
+    }
+  }
+  tabuleiro[indice0][indice1] = qntBombas;
 }
