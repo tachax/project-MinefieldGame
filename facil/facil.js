@@ -47,13 +47,13 @@ function trocarNiveis() {
 
 //trocar matriz(add bombas nela) e mudar cor do botão
 function trocarMatriz(ident) {
-  document.getElementById(ident).style.background = "red"
+  document.getElementById(ident).style.background = "white"
   console.log(ident)
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
     gerarBombas()
-    proxBomba()
+    mapearBombas()
     PRIMEIROCLIQUE = false;
   }
   
@@ -80,153 +80,90 @@ var qntBombas = 0;
 
 
 //gerar números próx bomba
-function proxBomba() {
-
+function mapearBombas() {
   var indice0;
   var indice1;
   
   indice0 = 0
-  console.log(indice0)
-
-  
   while(indice0<linhas) {
 
-    
     //vai em cada coluna
     indice1 = 0
-    console.log(indice1)
     while (indice1 < colunas) {
 
-    qntBombas = 0;
+      qntBombas = 0;
 
-    //ve se já é uma bomba, para não alterar seu valor
-    if(tabuleiro[indice0][indice1] == -1) {
-      console.log(indice1 + ' era bomba')
-      indice1++;
-    } else {
+      //ve se já é uma bomba, para não alterar seu valor
+      if(tabuleiro[indice0][indice1] == -1) {
+        indice1++;
 
-      //vai girando ao redor
+      } else {
+        //vai girando ao redor de cada 'quadrado'
+        
+        //vê se é a primeira linha pra não dar erro
+        if (indice0 == 0) {
+          if (tabuleiro[indice0][indice1 - 1] === -1) {
+            qntBombas++;
+          }
+          if (tabuleiro[indice0][indice1 + 1] === -1) {
+            qntBombas++;
+          }
+          if (tabuleiro[indice0 + 1][indice1 - 1] === -1) {
+            qntBombas++;
+          }
+          if (tabuleiro[indice0 + 1][indice1] === -1) {
+            qntBombas++;
+          }
+          if (tabuleiro[indice0 + 1][indice1 + 1] === -1) {
+            qntBombas++;
+          }
+
+        //vê se é a última linha pra não dar erro
+        } else if (indice0 == 7) {
+            if (tabuleiro[indice0 - 1][indice1 - 1] == -1) {
+              qntBombas++;
+            }
+            if (tabuleiro[indice0 - 1][indice1] === -1) {
+              qntBombas++;
+            }
+            if (tabuleiro[indice0 - 1][indice1 + 1] === -1) {
+              qntBombas++;
+            }
+            if (tabuleiro[indice0][indice1 - 1] === -1) {
+              qntBombas++;
+            }
+            if (tabuleiro[indice0][indice1 + 1] === -1) {
+                qntBombas++;
+            }
+        } else {
+            if (tabuleiro[indice0 - 1][indice1 - 1] == -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0 - 1][indice1] === -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0 - 1][indice1 + 1] === -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0][indice1 - 1] === -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0][indice1 + 1] === -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0 + 1][indice1 - 1] === -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0 + 1][indice1] === -1) {
+                qntBombas++;
+            }
+            if (tabuleiro[indice0 + 1][indice1 + 1] === -1) {
+                qntBombas++;
+            }
+      }
       
-      //vê se é a primeira linha pra não dar erro
-      if (indice0 == 0) {
-        if (tabuleiro[indice0][indice1 - 1] === 0) {
-
-        } else if (tabuleiro[indice0][indice1 - 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas4 ' + qntBombas)
-        }
-        if (tabuleiro[indice0][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas5 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 + 1][indice1 - 1] === 0) {
-
-        } else if (tabuleiro[indice0 + 1][indice1 - 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas6 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 + 1][indice1] === 0) {
-
-        } else if (tabuleiro[indice0 + 1][indice1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas7 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 + 1][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0 + 1][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas8 ' + qntBombas)
-        }
-
-    //vê se é a última linha pra não dar erro
-    } else if (indice0 == 7) {
-        if (tabuleiro[indice0 - 1][indice1 - 1] == 0) {
-
-        } else if (tabuleiro[indice0 - 1][indice1 - 1] == -1) {
-            qntBombas++;
-            console.log('qnt bombas1 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 - 1][indice1] === 0) {
-
-        } else if (tabuleiro[indice0 - 1][indice1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas2 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 - 1][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0 - 1][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas3 ' + qntBombas)
-        }
-        if (tabuleiro[indice0][indice1 - 1] === 0) {
-
-        } else if (tabuleiro[indice0][indice1 - 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas4 ' + qntBombas)
-        }
-        if (tabuleiro[indice0][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas5 ' + qntBombas)
-        }
-    } else {
-        if (tabuleiro[indice0 - 1][indice1 - 1] == 0) {
-
-        } else if (tabuleiro[indice0 - 1][indice1 - 1] == -1) {
-            qntBombas++;
-            console.log('qnt bombas1 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 - 1][indice1] === 0) {
-
-        } else if (tabuleiro[indice0 - 1][indice1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas2 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 - 1][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0 - 1][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas3 ' + qntBombas)
-        }
-        if (tabuleiro[indice0][indice1 - 1] === 0) {
-
-        } else if (tabuleiro[indice0][indice1 - 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas4 ' + qntBombas)
-        }
-        if (tabuleiro[indice0][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas5 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 + 1][indice1 - 1] === 0) {
-
-        } else if (tabuleiro[indice0 + 1][indice1 - 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas6 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 + 1][indice1] === 0) {
-
-        } else if (tabuleiro[indice0 + 1][indice1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas7 ' + qntBombas)
-        }
-        if (tabuleiro[indice0 + 1][indice1 + 1] === 0) {
-
-        } else if (tabuleiro[indice0 + 1][indice1 + 1] === -1) {
-            qntBombas++;
-            console.log('qnt bombas8 ' + qntBombas)
-        }
-    }
-      
-      console.log(`indice1 ${indice1}`)
       tabuleiro[indice0][indice1] = qntBombas;
       qntBombas = 0
-      console.log('qnt bombas total '+tabuleiro[indice0][indice1])
       indice1++;
     }
 
@@ -238,25 +175,3 @@ function proxBomba() {
   
 
 }
-    
-
-    //   for (let l = indice0 - 1; l < indice0 + 2; l++) {
-    //     for (let c = indice1 - 1; c < indice1 + 2; c++) {
-    //       if(l >= 0 && l < linhas && c>= 0 && c < colunas)
-    //         console.log()
-         
-    //      if (tabuleiro[c][l] == -1) {
-    //        qntBombas++;
-    //       }
-          
-    //     }
-    //   }
-    
-    // console.log(l < indice1 + 2)
-    // l++
-    
-    
-    // tabuleiro[indice0][indice1] = qntBombas;
-    // console.log(tabuleiro[indice0][indice1])
-    // console.log(`qnt bombas ${qntBombas}`)
-    // console.log(tabuleiro)
