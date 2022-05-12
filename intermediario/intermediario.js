@@ -5,7 +5,8 @@ const bombas = 40;
 let i;
 let j;
 var PRIMEIROCLIQUE = true;
-var indI;
+var identLin = '';
+var identCol = '';
 
 //inserindo a tabela
 function montarTabuleiro() {
@@ -44,10 +45,14 @@ function trocarNiveis() {
   }
 }
 
-//trocar matriz(add bombas nela) e mudar cor do botão
+//cada botao em cada jogada
 function jogada(ident) {
+  //sempre que clica muda a cor do botão
   document.getElementById(ident).style.background = "white"
   console.log(ident)
+
+  //arruma o indice da matriz
+  indiceMatriz(ident)
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
@@ -56,47 +61,49 @@ function jogada(ident) {
     PRIMEIROCLIQUE = false;
   }
 
-  ehNumero(ident, identLin, identCol)
+  //verificar o quadrado que clicou
+  localClicado(ident, identLin, identCol)
 
 }
 
-var identLin = '';
-var identCol = '';
+//arrumar o id para pegar os elementos da matriz corretamente
+function indiceMatriz(ident) {
+  identLin = '';
+  identCol = '';
+
+  //arrumar o id da linha/coluna
+  for (let i = 0; i < ident.length; i++) {
+
+    if (ident[i] == 'l') {
+      //linha
+      for (let j = 0; j < i; j++) {
+        identLin += ident[j]
+      }
+    
+      //coluna
+      for (let j = i + 1; j < ident.length-1; j++) {
+        identCol += ident[j]
+      }
+      
+    }
+  }
+}
 
 //gerar bombas
 function gerarBombas(ident) {
 
-  //arrumar o id da linha/coluna
-  for(let i=0; i < ident.length; i++) {
-    if (ident[i] == 'l') {
-      for (let j=0; j<i; j++) {
-        identLin += ident[j]
-      }
-    } else if (ident[i] == 'c') {
-      for (let j=i-1; j>identLin.length; j--) {
-        identCol += ident[j]
-      }
-    }
-  }
-
-  identLin = Number(identLin)
-  identCol = Number(identCol)
-
-  console.log(identLin)
-  console.log(identCol)
-
   for (var i = 0; i < bombas; i++) {
-      var numLinha = Math.floor((Math.random() * linhas));
-      var numColuna = Math.floor((Math.random() * colunas));
+    var numLinha = Math.floor((Math.random() * linhas));
+    var numColuna = Math.floor((Math.random() * colunas));
 
-      //confere se já é uma bomba ou o número clicado
-      while (tabuleiro[numLinha][numColuna] === -1 || (numLinha == identLin && numColuna == identCol)) {
-        numLinha = Math.floor((Math.random() * linhas));
-        numColuna = Math.floor((Math.random() * colunas));
-      }
-
-      tabuleiro[numLinha][numColuna] = -1;
+    //confere se já é uma bomba ou o número clicado
+    while (tabuleiro[numLinha][numColuna] === -1 || (numLinha == identLin && numColuna == identCol)) {
+      numLinha = Math.floor((Math.random() * linhas));
+      numColuna = Math.floor((Math.random() * colunas));
     }
+
+    tabuleiro[numLinha][numColuna] = -1;
+  }
   console.log(tabuleiro)
 }
 
@@ -165,7 +172,8 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
   tabuleiro[indice0][indice1] = qntBombas;
 }
 
-function ehNumero(ident, identLin, identCol) {
+//verificar se clicou em bomba ou em número ! 0
+function localClicado(ident, identLin, identCol) {
   if (tabuleiro[identLin][identCol] != -1 || tabuleiro[identLin][identCol] != 0) {
     document.getElementById(ident).innerText = tabuleiro[identLin][identCol];
   }
