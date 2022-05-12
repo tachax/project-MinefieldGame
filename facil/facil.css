@@ -6,7 +6,7 @@ body {
 #preparado {
   background-color: #00453a;
   border-radius: 20px;
-  margin: 40%;
+  margin: 35%;
   margin-top: 10%;
   padding: 10px;
   gap: 6px;
@@ -52,8 +52,8 @@ body {
 #opcoesJogo {
   background-color: #00453a;
   border-radius: 20px;
-  margin: auto;
-  width: 27%;
+  margin-right: 30%;
+  margin-left: 30%;
   padding: 10px;
   gap: 6px;
 }

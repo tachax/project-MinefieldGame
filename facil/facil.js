@@ -66,7 +66,7 @@ function gerarBombas(ident) {
     var numColuna = Math.floor((Math.random() * colunas));
 
     //confere se já é uma bomba ou o número clicado
-    while (tabuleiro[numLinha][numColuna] === -1 && (numLinha == ident[0] || numColuna == ident[1])) {
+    while (tabuleiro[numLinha][numColuna] === -1 || (numLinha == ident[0] && numColuna == ident[1])) {
       numLinha = Math.floor((Math.random() * linhas));
       numColuna = Math.floor((Math.random() * colunas));
     }
@@ -121,7 +121,7 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
     }
 
     //vê se é a última linha pra não dar erro
-  } else if (indice0 == 7) {
+  } else if (indice0 == tabuleiro.length-1) {
     for (let i = indice0 - 1; i < indice0 + 1; i++) {
       for (let j = indice1 - 1; j < indice1 + 2; j++) {
         if (tabuleiro[i][j] === -1) {
@@ -144,10 +144,12 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
 }
 
 function ehNumero(ident) {
+  //vê se é um num e revela ele
   if (tabuleiro[ident[0]][ident[1]] != -1 || tabuleiro[ident[0]][ident[1]] != 0) {
     document.getElementById(ident).innerText = tabuleiro[ident[0]][ident[1]];
   }
 
+  //vê se clicou na bomba -> perde
   if (tabuleiro[ident[0]][ident[1]] == -1) {
     location.href = '../loser/loser.html'
   }

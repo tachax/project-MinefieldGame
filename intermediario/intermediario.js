@@ -5,6 +5,7 @@ const bombas = 40;
 let i;
 let j;
 var PRIMEIROCLIQUE = true;
+var indI;
 
 //inserindo a tabela
 function montarTabuleiro() {
@@ -14,10 +15,14 @@ function montarTabuleiro() {
     //linha
     tabuleiro[tabuleiro.length] = [];
     document.getElementById('tabela').innerHTML += `<tr id="${i}"></tr>`;
+    console.log(i)
+
     for (j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
-      document.getElementById(i).innerHTML += `<td><button onclick="jogada('${String(i)}${String(j)}')" id="${String(i)}${String(j)}"></button></td>`;
+      document.getElementById(i).innerHTML += `<td><button onclick="jogada('${String(i)}${String(j)}')" id="${String(i)}${String(j)}">${i}</button></td>`;
+
+      console.log(j)
     }
   }
 
@@ -63,18 +68,18 @@ function gerarBombas(ident) {
   var ident0;
   var ident1;
 
-//   if(ident.length == 3) {
-//     if (ident[1] > 1) {
+  //   if(ident.length == 3) {
+  //     if (ident[1] > 1) {
 
-//     }
-//   }
+  //     }
+  //   }
 
   for (var i = 0; i < bombas; i++) {
     var numLinha = Math.floor((Math.random() * linhas));
     var numColuna = Math.floor((Math.random() * colunas));
 
     //confere se já é uma bomba ou o número clicado
-    while (tabuleiro[numLinha][numColuna] === -1 && (numLinha == ident[0] || numColuna == ident[1])) {
+    while (tabuleiro[numLinha][numColuna] === -1 || (numLinha == ident[0] && numColuna == ident[1])) {
       numLinha = Math.floor((Math.random() * linhas));
       numColuna = Math.floor((Math.random() * colunas));
     }
@@ -107,7 +112,7 @@ function mapearBombas() {
       } else {
         //vai girando ao redor de cada 'quadrado'
         verificarAoRedor(indice0, indice1, qntBombas)
-  
+
         indice1++;
       }
 
@@ -129,7 +134,7 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
     }
 
     //vê se é a última linha pra não dar erro
-  } else if (indice0 == 7) {
+  } else if (indice0 == tabuleiro.length - 1) {
     for (let i = indice0 - 1; i < indice0 + 1; i++) {
       for (let j = indice1 - 1; j < indice1 + 2; j++) {
         if (tabuleiro[i][j] === -1) {
