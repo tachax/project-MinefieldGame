@@ -45,8 +45,11 @@ body {
 
 #tabuleiro button{
   background-color: black;
-  color: white;
-  /* padding: 21px 24px 21px 24px; */
+  color: black;
+  /* padding: 3px 9px; */
+  width: 40px;
+  height: 35px;
+  font-size: 13px;
 }
 
 #opcoesJogo {
@@ -72,6 +75,6 @@ table {
 td {
   border: solid 1px black;
   background-color: black;
-  /* width: 50px;
-  height: 40px; */
+  width: 40px;
+  height: 35px;
 }

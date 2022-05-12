@@ -13,11 +13,11 @@ function montarTabuleiro() {
   for (i = 0; i < linhas; i++) {
     //linha
     tabuleiro[tabuleiro.length] = [];
-    document.getElementById('tabela').innerHTML += `<tr id="${i}"></tr>`;
+    document.getElementById('tabela').innerHTML += `<tr id="linha${i}"></tr>`;
     for (j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
-      document.getElementById(i).innerHTML += `<td><button onclick="jogada('${String(i)}${String(j)}')" id="${String(i)}${String(j)}"></button></td>`;
+      document.getElementById(`linha${i}`).innerHTML += `<td><button onclick="jogada('${String(i)}${String(j)}')" id="${String(i)}${String(j)}"></button></td>`;
     }
   }
 

@@ -40,13 +40,16 @@ body {
   display: none;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
-#tabuleiro button {
+#tabuleiro button{
   background-color: black;
   color: black;
-  padding: 21px 24px 21px 24px;
+  /* padding: 3px 9px; */
+  width: 37px;
+  height: 23px;
+  font-size: 13px;
 }
 
 #opcoesJogo {
@@ -58,7 +61,7 @@ body {
   gap: 6px;
 }
 
-#opcoesJogo select {
+#opcoesJogo select{
   border-radius: 6px;
   padding: 1px;
 }
@@ -72,6 +75,6 @@ table {
 td {
   border: solid 1px black;
   background-color: black;
-  width: 50px;
-  height: 40px;
+  width: 35px;
+  height: 27px;
 }

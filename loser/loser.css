@@ -1,0 +1,39 @@
+* {
+    margin: auto;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    text-align: center;
+    background-color: #008374;
+    font-family: sans-serif;
+    font-style: normal;
+}
+
+
+.tela {
+    width: 650px;
+    height: 400px;
+    margin: auto;
+    margin-top: 3%;
+    background: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+h1 {
+    width: 358px;
+    height: 64px;
+    left: 151px;
+    top: 100px;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 83px;
+    text-transform: uppercase;
+    color: #FF0000;
+    mix-blend-mode: normal;
+}

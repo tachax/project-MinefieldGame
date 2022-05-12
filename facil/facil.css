@@ -6,7 +6,7 @@ body {
 #preparado {
   background-color: #00453a;
   border-radius: 20px;
-  margin: 35%;
+  margin: 40%;
   margin-top: 10%;
   padding: 10px;
   gap: 6px;
@@ -46,7 +46,10 @@ body {
 #tabuleiro button{
   background-color: black;
   color: black;
-  padding: 21px 24px 21px 24px;
+  /* padding: 3px 9px; */
+  width: 50px;
+  height: 40px;
+  font-size: 13px;
 }
 
 #opcoesJogo {
