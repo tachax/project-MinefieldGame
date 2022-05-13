@@ -2,22 +2,22 @@ var tabuleiro = [];
 const linhas = 14;
 const colunas = 18;
 const bombas = 40;
-let i;
-let j;
+const maxJogadas = linhas * colunas - bombas;
 var PRIMEIROCLIQUE = true;
-var identLin = '';
-var identCol = '';
+var jogadas = 0;
+var identLin;
+var identCol;
 
 //inserindo a tabela
 function montarTabuleiro() {
 
   //inserindo a qnt de linhas e colunas
-  for (i = 0; i < linhas; i++) {
+  for ( let i = 0; i < linhas; i++) {
     //linha
     tabuleiro[tabuleiro.length] = [];
     document.getElementById('tabela').innerHTML += `<tr id="linha${i}"></tr>`;
 
-    for (j = 0; j < colunas; j++) {
+    for (let j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
       document.getElementById(`linha${i}`).innerHTML += `<td><button onclick="jogada('${String(i)}l${String(j)}c')" id="${String(i)}l${String(j)}c"></button></td>`;
@@ -56,13 +56,13 @@ function jogada(ident) {
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
-    gerarBombas(ident)
+    gerarBombas()
     mapearBombas()
     PRIMEIROCLIQUE = false;
   }
 
   //verificar o quadrado que clicou
-  localClicado(ident, identLin, identCol)
+  localClicado(ident)
 
 }
 
@@ -90,7 +90,7 @@ function indiceMatriz(ident) {
 }
 
 //gerar bombas
-function gerarBombas(ident) {
+function gerarBombas() {
 
   for (var i = 0; i < bombas; i++) {
     var numLinha = Math.floor((Math.random() * linhas));
@@ -173,7 +173,7 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
 }
 
 //verificar se clicou em bomba ou em número ! 0
-function localClicado(ident, identLin, identCol) {
+function localClicado(ident) {
   if (tabuleiro[identLin][identCol] != -1 || tabuleiro[identLin][identCol] != 0) {
     document.getElementById(ident).innerText = tabuleiro[identLin][identCol];
   }
@@ -182,4 +182,7 @@ function localClicado(ident, identLin, identCol) {
     location.href = '../loser/loser.html'
   }
 
+  if (jogadas == maxJogadas) {
+    location.href = '../winner/winner.html'
+  }
 }

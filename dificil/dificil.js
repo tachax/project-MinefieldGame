@@ -2,20 +2,22 @@ var tabuleiro = [];
 const linhas = 20;
 const colunas = 24;
 const bombas = 99;
-let i;
-let j;
+const maxJogadas = linhas * colunas - bombas;
 var PRIMEIROCLIQUE = true;
+var jogadas = 0;
+var identLin;
+var identCol;
 
 //inserindo a tabela
 function montarTabuleiro() {
 
   //inserindo a qnt de linhas e colunas
-  for (i = 0; i < linhas; i++) {
+  for (let i = 0; i < linhas; i++) {
     //linha
     tabuleiro[tabuleiro.length] = [];
     document.getElementById('tabela').innerHTML += `<tr id="linha${i}"></tr>`;
 
-    for (j = 0; j < colunas; j++) {
+    for (let j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
       document.getElementById(`linha${i}`).innerHTML += `<td><button onclick="jogada('${String(i)}l${String(j)}c')" id="${String(i)}l${String(j)}c"></button></td>`;
@@ -54,7 +56,7 @@ function jogada(ident) {
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
-    gerarBombas(ident)
+    gerarBombas()
     mapearBombas()
     PRIMEIROCLIQUE = false;
   }
@@ -180,4 +182,7 @@ function localClicado(ident, identLin, identCol) {
     location.href = '../loser/loser.html'
   }
 
+  if (jogadas == maxJogadas) {
+    location.href = '../winner/winner.html'
+  }
 }
