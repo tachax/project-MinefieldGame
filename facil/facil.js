@@ -141,37 +141,34 @@ function bombasAoRedor(indice0, indice1, qntBombas) {
   //vê se é a primeira linha pra não dar erro
   if (indice0 == 0) {
     for (let i = indice0; i < indice0 + 2; i++) {
-      for (let j = indice1 - 1; j < indice1 + 2; j++) {
-        if (tabuleiro[i][j] === -1) {
-          qntBombas++
-        }
-      }
+      bombasAoRedorColunas(i, indice1, qntBombas)
     }
 
     //vê se é a última linha pra não dar erro
   } else if (indice0 == tabuleiro.length - 1) {
     for (let i = indice0 - 1; i < indice0 + 1; i++) {
-      for (let j = indice1 - 1; j < indice1 + 2; j++) {
-        if (tabuleiro[i][j] === -1) {
-          qntBombas++
-        }
-      }
+      bombasAoRedorColunas(i, indice1, qntBombas)
     }
 
     //linhas de 1 a 6
   } else {
     for (let i = indice0 - 1; i < indice0 + 2; i++) {
-      for (let j = indice1 - 1; j < indice1 + 2; j++) {
-        if (tabuleiro[i][j] === -1) {
-          qntBombas++
-        }
-      }
+      bombasAoRedorColunas(i, indice1, qntBombas)
     }
   }
   tabuleiro[indice0][indice1] = qntBombas;
 }
 
+//só pra não repetir e poupar linha 
+function bombasAoRedorColunas(i, indice1, qntBombas) {
+  for (let j = indice1 - 1; j < indice1 + 2; j++) {
+    if (tabuleiro[i][j] === -1) {
+      qntBombas++
+    }
+  }
+}
 
+//varrer ao redor do quadrado vazio
 function redorDoVazio() {
   var numeros = '12345678'
   var revelarNum;
@@ -247,6 +244,7 @@ function verificarClicados(revelarNum, i, j) {
   let tem;
   tem = false;
 
+  //verifica se o achado já foi encontrado antes
   for (let k = 0; k < jaClicados.length; k++) {
     if (jaClicados[k] == revelarNum) {
       tem = true;
