@@ -19,12 +19,12 @@ h2 {
 
 .card {
   background-color: #00453a;
-  margin: 77px 130px 77px 130px;
+  margin: 77px 20%;
   display: flex;
   flex-direction: column;
   gap: 30px;
   border-radius: 20px;
-  padding: 100px;
+  padding: 5%;
 }
 
 button {

@@ -14,9 +14,9 @@ body {
 
 .card {
   background-color: #00453a;
-  margin: 77px 130px 77px 130px;
+  margin: 77px 20%;
   border-radius: 20px;
-  padding: 100px;
+  padding: 4%;
 }
 
 img {
