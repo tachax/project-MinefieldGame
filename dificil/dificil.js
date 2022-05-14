@@ -174,14 +174,17 @@ function verificarAoRedor(indice0, indice1, qntBombas) {
 
 //verificar se clicou em bomba ou em número ! 0
 function localClicado(ident, identLin, identCol) {
+  //verifica se o botão clicado é um número e mostra ele
   if (tabuleiro[identLin][identCol] != -1 || tabuleiro[identLin][identCol] != 0) {
     document.getElementById(ident).innerText = tabuleiro[identLin][identCol];
   }
 
+  //verifica se clicou na bomba e perde
   if (tabuleiro[identLin][identCol] == -1) {
     location.href = '../loser/loser.html'
   }
 
+  //verifica se achou todos os quadrados sem bomba e ganha
   if (jogadas == maxJogadas) {
     location.href = '../winner/winner.html'
   }
