@@ -6,6 +6,7 @@ const maxJogadas = linhas * colunas - bombas;
 var PRIMEIROCLIQUE = true;
 var jogadas = 0;
 var identLin;
+var identCol;
 var jaClicados = [];
 
 //inserindo a tabela
@@ -62,6 +63,7 @@ function jogada(ident) {
 
   //verificar o quadrado que clicou
   localClicado(ident)
+  document.getElementById(ident).disabled = true;
 }
 
 //arrumar o id para pegar os elementos da matriz corretamente
@@ -89,13 +91,18 @@ function indiceMatriz(ident) {
 
 //gerar bombas
 function gerarBombas() {
+  identLin = Number(identLin)
+  identCol = Number(identCol)
 
   for (var i = 0; i < bombas; i++) {
     var numLinha = Math.floor((Math.random() * linhas));
     var numColuna = Math.floor((Math.random() * colunas));
 
-    //confere se já é uma bomba ou o número clicado
-    while (tabuleiro[numLinha][numColuna] === -1 || (numLinha == identLin && numColuna == identCol)) {
+    //confere se já é uma bomba ou o número clicado && não deixa colocar bombas ao redor do bt clicado
+    while (tabuleiro[numLinha][numColuna] === -1 || 
+      (numLinha == identLin-1 && numColuna == identCol-1) || (numLinha == identLin-1 && numColuna == identCol) || (numLinha == identLin-1 && numColuna == identCol+1) ||
+      (numLinha == identLin && numColuna == identCol-1) || (numLinha == identLin && numColuna == identCol) || (numLinha == identLin && numColuna == identCol+1) || 
+      (numLinha == identLin+1 && numColuna == identCol-1) || (numLinha == identLin+1 && numColuna == identCol) || (numLinha == identLin+1 && numColuna == identCol+1)) {
       numLinha = Math.floor((Math.random() * linhas));
       numColuna = Math.floor((Math.random() * colunas));
     }
@@ -170,82 +177,78 @@ function bombasAoRedor(indice0, indice1, qntBombas) {
   tabuleiro[indice0][indice1] = qntBombas;
 }
 
-
+//varrer ao redor do quadrado vazio
 function redorDoVazio() {
-  var numeros = '12345678'
-  var revelarNum;
-  identLin = Number(identLin)
-  identCol = Number(identCol)
 
   //verifica se é a primeira linha do tabuleiro
   if (identLin == 0) {
     for (let i = identLin; i < identLin + 2; i++) {
       console.log('i ' + i)
-      for (let j = identCol - 1; j < identCol + 2; j++) {
-        console.log('j ' + j)
-        for (let k = 0; k < numeros.length; k++) {
-          if (tabuleiro[i][j] == numeros[k]) {
-            console.log('tem num ao redor')
-            revelarNum = String(i) + 'l' + String(j) + 'c'
-            console.log(revelarNum)
-            verificarClicados(revelarNum, i, j)
-            
-          } else if (tabuleiro[i][j] == 0) {
-
-          }
-        }
-      }
+      redorDoVazioColunas(i)
     }
 
     //verifica se é a última linha do tabuleiro
   } else if (identLin == tabuleiro.length - 1) {
     for (let i = identLin - 1; i < identLin + 1; i++) {
       console.log('i ' + i)
-      for (let j = identCol - 1; j < identCol + 2; j++) {
-        console.log('j ' + j)
-        for (let k = 0; k < numeros.length; k++) {
-          if (tabuleiro[i][j] == numeros[k]) {
-            console.log('tem num ao redor')
-            revelarNum = String(i) + 'l' + String(j) + 'c'
-            console.log(revelarNum)
-            verificarClicados(revelarNum, i, j)
-            
-          } else if (tabuleiro[i][j] == 0) {
-
-          }
-        }
-      }
+      redorDoVazioColunas(i)
     }
-
 
     //restante das linhas
   } else {
     for (let i = identLin - 1; i < identLin + 2; i++) {
       console.log('i ' + i)
-      for (let j = identCol - 1; j < identCol + 2; j++) {
-        console.log('j ' + j)
-        for (let k = 0; k < numeros.length; k++) {
-          if (tabuleiro[i][j] == numeros[k]) {
-            console.log('tem num ao redor')
-            revelarNum = String(i) + 'l' + String(j) + 'c'
-            console.log(revelarNum)
-            verificarClicados(revelarNum, i, j)
-            
-          } else if (tabuleiro[i][j] == 0) {
-
-          }
-        }
-      }
+      redorDoVazioColunas(i)
     }
   }
 
 }
 
+//pra poupas linhas
+function redorDoVazioColunas(i) {
+  var numeros = '12345678'
+
+  for (let j = identCol - 1; j < identCol + 2; j++) {
+    console.log('j ' + j)
+
+    if (j != identCol || i != identLin) {
+
+      if (tabuleiro[i][j] == 0) {
+        console.log('tem 0 ao redor')
+        verificarClicados(i, j)
+        // redorDoVazio()
+
+      } else {
+
+        for (let k = 0; k < numeros.length; k++) {
+          if (tabuleiro[i][j] == numeros[k]) {
+            console.log('tem num ao redor')
+            verificarClicados(i, j)
+
+          }
+        }
+
+      }
+
+    }
+  }
+}
+
+function outroZero() {
+
+}
+
 //verificar os numeros ja clicados para não repetir na array
-function verificarClicados(revelarNum, i, j) {
+function verificarClicados(i, j) {
+  var revelarNum;
   let tem;
   tem = false;
+  
+  //remonta o id do botão
+  revelarNum = String(i) + 'l' + String(j) + 'c'
+  console.log(revelarNum)
 
+  //verifica se o achado já foi encontrado antes
   for (let k = 0; k < jaClicados.length; k++) {
     if (jaClicados[k] == revelarNum) {
       tem = true;
@@ -256,6 +259,7 @@ function verificarClicados(revelarNum, i, j) {
     jaClicados[jaClicados.length] = revelarNum;
     document.getElementById(revelarNum).innerText = tabuleiro[i][j];
     document.getElementById(revelarNum).style.background = "white";
+    document.getElementById(revelarNum).disabled = true;
     jogadas++;
   }
 }
