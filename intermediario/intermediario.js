@@ -164,7 +164,7 @@ function bombasAoRedor(indice0, indice1, qntBombas) {
       }
     }
 
-    //linhas de 1 a 6
+    //linhas restantes
   } else {
     for (let i = indice0 - 1; i < indice0 + 2; i++) {
       for (let j = indice1 - 1; j < indice1 + 2; j++) {
@@ -179,6 +179,8 @@ function bombasAoRedor(indice0, indice1, qntBombas) {
 
 //varrer ao redor do quadrado vazio
 function redorDoVazio() {
+  identLin = Number(identLin)
+  identCol = Number(identCol)
 
   //verifica se é a primeira linha do tabuleiro
   if (identLin == 0) {
