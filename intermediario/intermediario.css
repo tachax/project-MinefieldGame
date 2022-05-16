@@ -53,6 +53,9 @@ body {
 }
 
 #opcoesJogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #00453a;
   border-radius: 20px;
   margin-right: 30%;
@@ -64,8 +67,14 @@ body {
 #opcoesJogo select{
   border-radius: 6px;
   padding: 1px;
+  height: 30px;
 }
 
+#extrasJogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 table {
   background-color: aliceblue;
