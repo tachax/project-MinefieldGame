@@ -307,15 +307,12 @@ function localClicado(ident) {
 
   //verifica se clicou na bomba e perde
   if (tabuleiro[identLin][identCol] == -1) {
-    stop()
-    //location.href = '../loser/loser.html'
+    location.href = '../loser/loser.html'
   }
 
   //verifica se achou todos os quadrados sem bomba e ganha
   if (jogadas == maxJogadas) {
     stop()
-    
-    //location.href = '../winner/winner.html'
   }
 
   console.log(jaClicados)
@@ -338,12 +335,10 @@ function start() {
 }
 
 function stop() {
-  //parou = document.getElementById('counter').value
   clearInterval(cron)
-  //document.getElementById('counter').innerText = 'parei'
-  document.getElementById('tempo').innerText += format
+  document.getElementById('tempo').innerText += ` ${format}`
+  document.getElementById('jogo').style.display = 'none'
   document.getElementById('tela').style.display = 'flex'
-  //location.assign("../winner/winner.html#" + format);
 }
 
 function timer() {

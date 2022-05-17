@@ -43,7 +43,7 @@ body {
   gap: 30px;
 }
 
-#tabuleiro button{
+#tabuleiro button {
   background-color: black;
   color: black;
   width: 50px;
@@ -63,7 +63,7 @@ body {
   gap: 6px;
 }
 
-#opcoesJogo select{
+#opcoesJogo select {
   border-radius: 6px;
   padding: 1px;
   height: 30px;
@@ -89,6 +89,9 @@ td {
 
 .tela {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 650px;
   height: 400px;
   margin: auto;
@@ -98,6 +101,7 @@ td {
   border-radius: 50px;
 }
 
+
 h1 {
   font-family: 'DM Sans';
   text-transform: uppercase;
@@ -106,4 +110,21 @@ h1 {
 
 h3 {
   color: white;
+}
+
+#btMenu {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  padding: 16px 32px;
+  border-radius: 40px;
+  background: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  text-transform: uppercase;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
 }

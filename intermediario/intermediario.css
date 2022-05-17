@@ -43,7 +43,7 @@ body {
   gap: 30px;
 }
 
-#tabuleiro button{
+#tabuleiro button {
   background-color: black;
   color: black;
   /* padding: 3px 9px; */
@@ -64,7 +64,7 @@ body {
   gap: 6px;
 }
 
-#opcoesJogo select{
+#opcoesJogo select {
   border-radius: 6px;
   padding: 1px;
   height: 30px;
@@ -86,4 +86,46 @@ td {
   background-color: black;
   width: 40px;
   height: 35px;
+}
+
+.tela {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  height: 400px;
+  margin: auto;
+  margin-top: 3%;
+  background: #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+}
+
+
+h1 {
+  font-family: 'DM Sans';
+  text-transform: uppercase;
+  color: #00856F;
+}
+
+h3 {
+  color: white;
+}
+
+#btMenu {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  padding: 16px 32px;
+  border-radius: 40px;
+  background: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  text-transform: uppercase;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
 }

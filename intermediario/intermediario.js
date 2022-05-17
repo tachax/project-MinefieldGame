@@ -56,6 +56,7 @@ function jogada(ident) {
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
+    start()
     gerarBombas()
     mapearBombas()
     console.log(tabuleiro)
@@ -311,8 +312,43 @@ function localClicado(ident) {
 
   //verifica se achou todos os quadrados sem bomba e ganha
   if (jogadas == maxJogadas) {
-    location.href = '../winner/winner.html'
+    stop()
   }
 
   console.log(jaClicados)
+}
+
+//CRONOMETRO 
+"use strict"
+
+var min = 0;
+var seg = 0;
+
+var tempo = 1000; //quantos milesimos equivalem a um segundo
+var cron;
+var parou;
+var format;
+
+//primeiro clique no tabuleiro
+function start() {
+  cron = setInterval(() => { timer(); }, tempo)
+}
+
+function stop() {
+  clearInterval(cron)
+  document.getElementById('tempo').innerText += ` ${format}`
+  document.getElementById('jogo').style.display = 'none'
+  document.getElementById('tela').style.display = 'flex'
+}
+
+function timer() {
+  seg++;
+
+  if (seg == 60) {
+    seg = 0;
+    min++;
+  }
+
+  format = (min < 10 ? '0' + min : min) + ':' + (seg < 10 ? '0' + seg : seg)
+  document.getElementById('counter').innerText = format
 }
