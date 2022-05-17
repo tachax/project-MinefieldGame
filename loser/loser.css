@@ -14,8 +14,8 @@ body {
 
 
 .tela {
-    width: 650px;
-    height: 400px;
+    width: 550px;
+    height: 300px;
     margin: auto;
     margin-top: 3%;
     background: #000000;
@@ -67,12 +67,12 @@ h3 {
     display: flex;
     flex-direction: row;
     margin-top: 2.5%;
-    gap: -30%;
+    gap: -50%;
 }
 
 .branco {
-    margin-left: 400px;
-    margin-right: -70px;
+    margin-left: 450px;
+    margin-right: -200px;
 }
 
 .vermelho {

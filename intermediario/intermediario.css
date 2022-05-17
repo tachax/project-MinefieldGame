@@ -46,7 +46,6 @@ body {
 #tabuleiro button {
   background-color: black;
   color: black;
-  /* padding: 3px 9px; */
   width: 40px;
   height: 35px;
   font-size: 13px;
@@ -74,6 +73,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
+  color: #ffffff;
 }
 
 table {
@@ -90,6 +91,7 @@ td {
 
 #mensagem {
   display: none;
+  flex-direction: column;
 }
 
 .tela {
@@ -97,8 +99,8 @@ td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 650px;
-  height: 400px;
+  width: 550px;
+  height: 300px;
   margin: auto;
   margin-top: 3%;
   background: #000000;
@@ -132,4 +134,23 @@ h3 {
   order: 0;
   flex-grow: 0;
   cursor: pointer;
+}
+
+.botoes {
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2.5%;
+  gap: 230px;
+}
+
+.branco {
+  margin-top: 10%;
+  height: 80px;
+}
+
+.vermelho {
+  display: flex;
+  flex-direction: column;
 }
