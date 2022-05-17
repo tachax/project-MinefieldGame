@@ -56,6 +56,7 @@ function jogada(ident) {
 
   //só gerar bombas no primeiro clique
   if (PRIMEIROCLIQUE) {
+    start()
     gerarBombas()
     mapearBombas()
     console.log(tabuleiro)
@@ -96,10 +97,6 @@ function indiceMatriz(ident) {
 function gerarBombas() {
   identLin = Number(identLin)
   identCol = Number(identCol)
-
-  // var linhaAnt = (numLinha == identLin-1 && numColuna == identCol-1) || (numLinha == identLin-1 && numColuna == identCol) || (numLinha == identLin-1 && numColuna == identCol+1)
-  // var linhaIg = (numLinha == identLin && numColuna == identCol-1) || (numLinha == identLin && numColuna == identCol) || (numLinha == identLin && numColuna == identCol+1)
-  // var linhaPost = (numLinha == identLin+1 && numColuna == identCol-1) || (numLinha == identLin+1 && numColuna == identCol) || (numLinha == identLin+1 && numColuna == identCol+1)
 
   for (var i = 0; i < bombas; i++) {
     var numLinha = Math.floor((Math.random() * linhas));
@@ -186,6 +183,7 @@ function bombasAoRedor(indice0, indice1, qntBombas) {
 
 //varrer ao redor do quadrado vazio
 function redorDoVazio() {
+  // debugger
   var zerosAchados = [];
   identLin = Number(identLin)
   identCol = Number(identCol)
@@ -212,8 +210,7 @@ function redorDoVazio() {
     }
   }
 
-
-  //outroZero(zerosAchados)
+  outroZero(zerosAchados)
 }
 
 //pra poupas linhas
@@ -232,23 +229,9 @@ function redorDoVazioColunas(i, zerosAchados) {
         console.log('tem 0 ao redor')
         //remonta o id do botão
         revelarNum = String(i) + 'l' + String(j) + 'c'
-        //zerosAchados[zerosAchados.length] = revelarNum;
-        //console.log('achados ' + zerosAchados)
+        zerosAchados[zerosAchados.length] = revelarNum;
+        console.log('achados ' + zerosAchados)
         verificarClicados(i, j, revelarNum)
-        identLin = i
-        identCol = j
-
-        // //verifica se o achado já foi encontrado antes
-        // for (let k = 0; k < zerosAchados.length; k++) {
-        //   if (zerosAchados[k] == revelarNum) {
-        //     tem = true;
-        //   }
-        // }
-
-        // if (!tem) {
-        //   zerosAchados[zerosAchados.length] = revelarNum;
-        //   verificarClicados(i, j, revelarNum)
-        // }
 
       } else {
 
@@ -260,44 +243,28 @@ function redorDoVazioColunas(i, zerosAchados) {
 
           }
         }
-
       }
-
     }
   }
-
-
 }
 
 function outroZero(zerosAchados) {
-
-  for (let i = 0; i < zerosAchados.length; i++) {
-    console.log('zero i ' + i)
-    indiceMatriz(i, zerosAchados)
-
-    identLin = '';
-    identCol = '';
-
-    if (zerosAchados[i] == 'l') {
-      //linha
-      for (let j = 0; j < i; j++) {
-        identLin += zerosAchados[j]
-        console.log(identLin)
-      }
-
-      //coluna
-      for (let j = i + 1; j < zerosAchados.length - 1; j++) {
-        identCol += zerosAchados[j]
-        console.log(identCol)
-      }
-
-    }
+  let f = 0;
+  while (zerosAchados != []) {
+    console.log('zero i ' + f)
 
 
-    //redorDoVazio()
+    ident = zerosAchados[f]
 
+    indiceMatriz(ident)
 
+    console.log(identLin)
+    console.log(identCol)
+    console.log('teste')
+    zerosAchados.shift();
+    redorDoVazio()
 
+    f++
   }
 }
 
@@ -306,14 +273,11 @@ function verificarClicados(i, j, revelarNum) {
   let tem;
   tem = false;
 
-
   console.log(revelarNum)
 
   //verifica se o achado já foi encontrado antes
-  for (let k = 0; k < jaClicados.length; k++) {
-    if (jaClicados[k] == revelarNum) {
-      tem = true;
-    }
+  if (jaClicados.includes(revelarNum)) {
+    tem = true;
   }
 
   if (!tem) {
@@ -343,13 +307,53 @@ function localClicado(ident) {
 
   //verifica se clicou na bomba e perde
   if (tabuleiro[identLin][identCol] == -1) {
-    location.href = '../loser/loser.html'
+    stop()
+    //location.href = '../loser/loser.html'
   }
 
   //verifica se achou todos os quadrados sem bomba e ganha
   if (jogadas == maxJogadas) {
-    location.href = '../winner/winner.html'
+    stop()
+    
+    //location.href = '../winner/winner.html'
   }
 
   console.log(jaClicados)
+}
+
+//CRONOMETRO 
+"use strict"
+
+var min = 0;
+var seg = 0;
+
+var tempo = 1000; //quantos milesimos equivalem a um segundo
+var cron;
+var parou;
+var format;
+
+//primeiro clique no tabuleiro
+function start() {
+  cron = setInterval(() => { timer(); }, tempo)
+}
+
+function stop() {
+  //parou = document.getElementById('counter').value
+  clearInterval(cron)
+  //document.getElementById('counter').innerText = 'parei'
+  document.getElementById('tempo').innerText += format
+  document.getElementById('tela').style.display = 'flex'
+  //location.assign("../winner/winner.html#" + format);
+}
+
+function timer() {
+  seg++;
+
+  if (seg == 60) {
+    seg = 0;
+    min++;
+  }
+
+  format = (min < 10 ? '0' + min : min) + ':' + (seg < 10 ? '0' + seg : seg)
+  document.getElementById('counter').innerText = format
 }

@@ -86,3 +86,24 @@ td {
   width: 50px;
   height: 40px;
 }
+
+.tela {
+  display: none;
+  width: 650px;
+  height: 400px;
+  margin: auto;
+  margin-top: 3%;
+  background: #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+}
+
+h1 {
+  font-family: 'DM Sans';
+  text-transform: uppercase;
+  color: #00856F;
+}
+
+h3 {
+  color: white;
+}
