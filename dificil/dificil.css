@@ -87,8 +87,12 @@ td {
   height: 27px;
 }
 
-.tela {
+#mensagem {
   display: none;
+}
+
+.tela {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;

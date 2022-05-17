@@ -59,7 +59,6 @@ function jogada(ident) {
     start()
     gerarBombas()
     mapearBombas()
-    console.log(tabuleiro)
     PRIMEIROCLIQUE = false;
   }
 
@@ -80,13 +79,11 @@ function indiceMatriz(ident) {
       //linha
       for (let j = 0; j < i; j++) {
         identLin += ident[j]
-        console.log(identLin)
       }
 
       //coluna
       for (let j = i + 1; j < ident.length - 1; j++) {
         identCol += ident[j]
-        console.log(identCol)
       }
 
     }
@@ -113,7 +110,6 @@ function gerarBombas() {
 
     tabuleiro[numLinha][numColuna] = -1;
   }
-  console.log(tabuleiro)
 }
 
 //gerar números próx bomba
@@ -183,63 +179,47 @@ function bombasAoRedor(indice0, indice1, qntBombas) {
 
 //varrer ao redor do quadrado vazio
 function redorDoVazio() {
-  // debugger
-  var zerosAchados = [];
   identLin = Number(identLin)
   identCol = Number(identCol)
 
   //verifica se é a primeira linha do tabuleiro
   if (identLin == 0) {
     for (let i = identLin; i < identLin + 2; i++) {
-      console.log('i ' + i)
-      redorDoVazioColunas(i, zerosAchados)
+      redorDoVazioColunas(i)
     }
 
     //verifica se é a última linha do tabuleiro
   } else if (identLin == tabuleiro.length - 1) {
     for (let i = identLin - 1; i < identLin + 1; i++) {
-      console.log('i ' + i)
-      redorDoVazioColunas(i, zerosAchados)
+      redorDoVazioColunas(i)
     }
 
     //restante das linhas
   } else {
     for (let i = identLin - 1; i < identLin + 2; i++) {
-      console.log('i ' + i)
-      redorDoVazioColunas(i, zerosAchados)
+      redorDoVazioColunas(i)
     }
   }
 
-  outroZero(zerosAchados)
 }
 
 //pra poupas linhas
-function redorDoVazioColunas(i, zerosAchados) {
-  var revelarNum;
+function redorDoVazioColunas(i) {
   let tem;
   tem = false;
   var numeros = '12345678'
 
   for (let j = identCol - 1; j < identCol + 2; j++) {
-    console.log('j ' + j)
 
     if (j != identCol || i != identLin) {
-
       if (tabuleiro[i][j] == 0) {
-        console.log('tem 0 ao redor')
-        //remonta o id do botão
-        revelarNum = String(i) + 'l' + String(j) + 'c'
-        zerosAchados[zerosAchados.length] = revelarNum;
-        console.log('achados ' + zerosAchados)
-        verificarClicados(i, j, revelarNum)
+        verificarClicados(i, j)
 
       } else {
 
         for (let k = 0; k < numeros.length; k++) {
           if (tabuleiro[i][j] == numeros[k]) {
-            console.log('tem num ao redor')
-            revelarNum = String(i) + 'l' + String(j) + 'c'
-            verificarClicados(i, j, revelarNum)
+            verificarClicados(i, j)
 
           }
         }
@@ -248,32 +228,14 @@ function redorDoVazioColunas(i, zerosAchados) {
   }
 }
 
-function outroZero(zerosAchados) {
-  let f = 0;
-  while (zerosAchados != []) {
-    console.log('zero i ' + f)
-
-
-    ident = zerosAchados[f]
-
-    indiceMatriz(ident)
-
-    console.log(identLin)
-    console.log(identCol)
-    console.log('teste')
-    zerosAchados.shift();
-    redorDoVazio()
-
-    f++
-  }
-}
-
 //verificar os numeros ja clicados para não repetir na array
-function verificarClicados(i, j, revelarNum) {
+function verificarClicados(i, j) {
+  var revelarNum;
   let tem;
   tem = false;
 
-  console.log(revelarNum)
+  //remonta o id do botão
+  revelarNum = String(i) + 'l' + String(j) + 'c'
 
   //verifica se o achado já foi encontrado antes
   if (jaClicados.includes(revelarNum)) {
@@ -338,7 +300,7 @@ function stop() {
   clearInterval(cron)
   document.getElementById('tempo').innerText += ` ${format}`
   document.getElementById('jogo').style.display = 'none'
-  document.getElementById('tela').style.display = 'flex'
+  document.getElementById('mensagem').style.display = 'flex'
 }
 
 function timer() {

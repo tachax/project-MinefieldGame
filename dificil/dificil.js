@@ -338,7 +338,7 @@ function stop() {
   clearInterval(cron)
   document.getElementById('tempo').innerText += ` ${format}`
   document.getElementById('jogo').style.display = 'none'
-  document.getElementById('tela').style.display = 'flex'
+  document.getElementById('mensagem').style.display = 'flex'
 }
 
 function timer() {

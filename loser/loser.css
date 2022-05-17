@@ -61,4 +61,21 @@ h3 {
     order: 0;
     flex-grow: 0;
     cursor: pointer;
-  }
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2.5%;
+    gap: -30%;
+}
+
+.branco {
+    margin-left: 400px;
+    margin-right: -70px;
+}
+
+.vermelho {
+    display: flex;
+    flex-direction: column;
+}
