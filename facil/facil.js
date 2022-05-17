@@ -3,6 +3,7 @@ const linhas = 8;
 const colunas = 10;
 const bombas = 10;
 const maxJogadas = linhas * colunas - bombas;
+var band = bombas;
 var PRIMEIROCLIQUE = true;
 var jogadas = 0;
 var identLin;
@@ -21,7 +22,7 @@ function montarTabuleiro() {
     for (let j = 0; j < colunas; j++) {
       //coluna c/ os números
       tabuleiro[i][j] = 0;
-      document.getElementById(`linha${i}`).innerHTML += `<td><button onclick="jogada('${String(i)}l${String(j)}c')" id="${String(i)}l${String(j)}c"></button></td>`;
+      document.getElementById(`linha${i}`).innerHTML += `<td><button onclick="jogada('${String(i)}l${String(j)}c')" id="${String(i)}l${String(j)}c" oncontextmenu="bandeiras('${String(i)}l${String(j)}c')"></button></td>`;
     }
   }
 
@@ -49,7 +50,6 @@ function trocarNiveis() {
 function jogada(ident) {
   //sempre que clica muda a cor do botão
   document.getElementById(ident).style.background = "white"
-  console.log(ident)
 
   //arruma o indice da matriz
   indiceMatriz(ident)
@@ -205,8 +205,6 @@ function redorDoVazio() {
 
 //pra poupas linhas
 function redorDoVazioColunas(i) {
-  let tem;
-  tem = false;
   var numeros = '12345678'
 
   for (let j = identCol - 1; j < identCol + 2; j++) {
@@ -276,8 +274,19 @@ function localClicado(ident) {
   if (jogadas == maxJogadas) {
     stop()
   }
+}
 
-  console.log(jaClicados)
+function bandeiras(ident) {
+  var btDireito;
+  btDireito = document.getElementById(ident);
+
+  if (btDireito.value == '🚩') {
+    btDireito.innerText = '';
+  } else if (btDireito.value != '🚩' && band > 0) {
+    btDireito.innerText = '🚩';
+    band--;
+    document.getElementById('band').innerText = `🚩 ${band}`
+  }
 }
 
 //CRONOMETRO 
@@ -285,7 +294,6 @@ function localClicado(ident) {
 
 var min = 0;
 var seg = 0;
-
 var tempo = 1000; //quantos milesimos equivalem a um segundo
 var cron;
 var parou;
