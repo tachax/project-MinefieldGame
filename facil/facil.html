@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="facil.js"></script>
   <link rel="stylesheet" href="facil.css" />
-  <title>Nível Fácil</title>
+  <title>Easy Level</title>
 </head>
 
 <body oncontextmenu="return false;">
 
   <div id="preparado">
-    <h4>Preparado?</h4>
-    <button id="btMontar" onclick="montarTabuleiro()">Sim</button>
+    <h4>Ready?</h4>
+    <button id="btMontar" onclick="montarTabuleiro()">Yes</button>
   </div>
 
   <div id="jogo">
     <div id="opcoesJogo">
       <select onchange="trocarNiveis()" name="" id="niveis">
-        <option value="facil">FÁCIL</option>
-        <option value="intermed">INTERMEDIÁRIO</option>
-        <option value="dificil">DIFÍCIL</option>
+        <option value="facil">EASY</option>
+        <option value="intermed">INTERMEDIATE</option>
+        <option value="dificil">HARD</option>
       </select>
       <div id="extrasJogo">
         <p>🙂</p>
@@ -41,8 +41,8 @@
     <div id="mensagem">
       <div id="tela" class="tela">
         <h1>YOU WIN !</h1>
-        <h3 id="tempo">Seu tempo foi de</h3>
-        <a href="../inicio/menu.html"><button id="btMenu">IR PARA O MENU</button></a>
+        <h3 id="tempo">Your time:</h3>
+        <a href="../inicio/menu.html"><button id="btMenu">GO TO THE MENU</button></a>
       </div>
 
       <div class="botoes">
