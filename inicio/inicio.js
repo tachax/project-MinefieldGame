@@ -1,6 +1,6 @@
 //trocar da pág. início para o menu
 function irMenu() {
-  location.href = 'menu.html'
+  location.href = 'inicio/menu.html'
 }
 
 const FACIL = 1
