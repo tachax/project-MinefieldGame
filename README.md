@@ -1,4 +1,4 @@
-# projeto-CampoMinado
+# project-MinefieldGame
 This is a project of a Minefield game. Made with HTML, CSS and JavaScript. Code made in Portuguese, but user interfaces updated to English.
 
 <h3>Members:</h3>
