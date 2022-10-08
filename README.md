@@ -1,6 +1,8 @@
 # project-MinefieldGame
 This is a project of a Minefield game. Made with HTML, CSS and JavaScript. Code made in Portuguese, but user interfaces updated to English.
 
+<a href="https://minefieldgame.netlify.app/" target="_blank">Link to play</a>
+
 <h3>Members:</h3>
 <ul>
   <li>Gustavo Rendeiro Amaral</li>
